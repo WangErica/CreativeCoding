@@ -18,13 +18,13 @@ function draw() {
   
   // creates anticipation effect
   if ((yBall <= 200 && jumpCount != jumps) || (yBall >= 400 && jumpCount != jumps)){
-    vel = vel * -1
+    vel = vel * -1 //bounces back
     jumpCount += 1
     console.log(jumpCount)  
   }
   
   if (jumpCount == jumps){
-    vel = 8
+    vel = 8 //changes velocity to then make the ball fly out the canvas
     }
   
   yBall -= vel
