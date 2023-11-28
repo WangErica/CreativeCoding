@@ -11,7 +11,7 @@ function setup() {
   serial = new p5.SerialPort();
 
   // serial port to use - you'll need to change this
-  serial.open('/dev/tty.usbmodem143201');
+  serial.open('/dev/tty.usbmodem1101');
 
   // what to do when we get serial data
   serial.on('data', gotData);
