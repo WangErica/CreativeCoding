@@ -14,7 +14,7 @@ let level = 1
 var bounceSound;
 
 function setup() {
-    bounceSound = loadSound('boing.mp3')
+    bounceSound = loadSound('boing.mp3') //loads sound
 
     createCanvas(600, 400)
     ballX = random(width)
@@ -23,21 +23,22 @@ function setup() {
     yvel = 4
 
     alert('Press the Enter key to restart the whole game. Click your mouse to continue playing once you have lost a life.')
+    //has a pop up on the screen once you first open the game
 }
 
 function draw() {
     background(0)
 
     fill(255)
-    rect(paddleX, paddleY, paddleW, paddleH)
+    rect(paddleX, paddleY, paddleW, paddleH) //makes paddle
 
     if (keyIsPressed) {
         if (keyCode == LEFT_ARROW && paddleX > 0) {
             paddleX -= 5
-        }
+        } //when the left key on your keyboard is clicked, the paddle will move to the left
         else if (keyCode == RIGHT_ARROW && paddleX + paddleW < width) {
             paddleX += 5
-        }
+        } //when the right key on your keyboard is clicked, the paddle will move to the right
 
         if (keyCode == ENTER){
             ballX = random(width)
@@ -45,7 +46,7 @@ function draw() {
             xvel = 3
             yvel = 4
             lives = 3
-        }
+        } //When the enter key is clicked, the game will restart
 
         if (level>= 3){
             if (keyCode == LEFT_ARROW && paddleX > 0) {
