@@ -33,25 +33,30 @@ function draw() {
     rect(paddleX, paddleY, paddleW, paddleH) //makes paddle
 
     if (keyIsPressed) {
+        //when the left key on your keyboard is clicked, the paddle will move to the left
         if (keyCode == LEFT_ARROW && paddleX > 0) {
             paddleX -= 5
-        } //when the left key on your keyboard is clicked, the paddle will move to the left
+        } 
+        //when the right key on your keyboard is clicked, the paddle will move to the right
         else if (keyCode == RIGHT_ARROW && paddleX + paddleW < width) {
             paddleX += 5
-        } //when the right key on your keyboard is clicked, the paddle will move to the right
+        } 
 
+        //When the enter key is clicked, the game will restart
         if (keyCode == ENTER){
             ballX = random(width)
             ballY = 0
             xvel = 3
             yvel = 4
             lives = 3
-        } //When the enter key is clicked, the game will restart
+        } 
 
         if (level>= 3){
+            // When the level is greater than or equal to 3, the speed of the paddle will increase.
             if (keyCode == LEFT_ARROW && paddleX > 0) {
                 paddleX -= 7.5
             }
+            // When the level is greater than or equal to 3, the speed of the paddle will increase.
             else if (keyCode == RIGHT_ARROW && paddleX + paddleW < width) {
                 paddleX += 7.5
             }
@@ -63,6 +68,7 @@ function draw() {
     ballX += xvel
     ballY += yvel
 
+    //display lives
     fill('#d9c3f7');
     textSize(24);
     text("Lives Remaining: " + lives, 10, 25);
@@ -70,6 +76,7 @@ function draw() {
 
     let bounceAngle = radians(45 + level * 5);
     if (collide()) {
+        //when the ball collides with the paddle, reverse the y-value that it is going at and make it bounce with a curve
         yvel = -yvel
         let interact = paddleX + paddleW / 2 - ballX;
         let normalIntersection = interact / (paddleW / 2);
@@ -95,7 +102,7 @@ function draw() {
         ballY = 34
     }
 
-    yvel += 0.05; // increase yvel
+    yvel += 0.05; // increase yvel or ball speed
 
     if(collisions >= 4){
         level = 2
@@ -123,6 +130,7 @@ function draw() {
     paddleW = max(50, 100 - level * 2); //changes the paddle width with every level change
 }
 
+//checks if the ball has fallen out of the bottom of the canvas
 function fall(){
     if (ballY + radius >= height){
         return true
@@ -134,7 +142,9 @@ function stop(){
     ballY = -30
 }
 
+// Checks to see if the ball collides with the top of the canvas and the paddle
 function collide() {
+    //if the ball collides with the paddle, the sound with play and the amount of successful collisions will increase
     if (ballY + radius >= paddleY && ballX >= paddleX & ballX <= paddleX + paddleW) {
         if (bounceSound.isPlaying()) {
             // .isPlaying() returns a boolean
@@ -150,13 +160,14 @@ function collide() {
     }
 }
 
-
+//checks if the ball hits the sides
 function hitEdges() {
     if (ballX - radius <= 0 || ballX + radius >= width) {
         return true
     }
 }
 
+//refresh the page when one life is lost
 function mouseClicked(){
     ballX = random(width)
     ballY = 0
